@@ -77,7 +77,7 @@
             && user_choices.has_relevance !== null && user_choices.has_complexity !== null
             && user_choices.requires_followup !== null || user_choices.is_english === false"
             class="btn-lg mb-4 rounded w-10 text-white border-0 mt-3 mx-6 bg-gradient-success"
-            @click="compare(prompt.id)">
+            @click="compare(prompt)">
             <i class="fas fa-check"></i>
             SUBMIT </button>
 
@@ -156,10 +156,10 @@
     },
 
     methods: {
-        compare(id) {
+        compare(prompt) {
             this.store.increment();
             this.show_results = true;
-            if (this.user_choices.is_english === this.prompts[id].is_english) {
+            if (this.user_choices.is_english === prompt.is_english) {
                 this.results.is_english = "Correct"
                 if (this.user_choices.is_english === false)
                     this.store.score = this.store.score + 4
@@ -167,28 +167,28 @@
             else {
                 this.results.is_english = "Wrong"
             }
-            if (this.user_choices.has_intent === this.prompts[id].has_intent) {
+            if (this.user_choices.has_intent === this.prompt.has_intent) {
                 this.results.has_intent = "Correct"
                 this.store.score = this.store.score + 1
             }
             else {
                 this.results.has_intent = "Wrong"
             }
-            if (this.user_choices.has_relevance === this.prompts[id].has_context_relevance) {
+            if (this.user_choices.has_relevance === prompt.has_context_relevance) {
                 this.results.has_relevance = "Correct"
                 this.store.score = this.store.score + 1
             }
             else {
                 this.results.has_relevance = "Wrong"
             }
-            if (this.user_choices.has_complexity === this.prompts[id].has_complexity) {
+            if (this.user_choices.has_complexity === prompt.has_complexity) {
                 this.results.has_complexity = "Correct"
                 this.store.score = this.store.score + 1
             }
             else {
                 this.results.has_complexity = "Wrong"
             }
-            if (this.user_choices.requires_followup === this.prompts[id].require_follow_up) {
+            if (this.user_choices.requires_followup === prompt.require_follow_up) {
                 this.results.requires_followup = "Correct"
                 this.store.score = this.store.score + 1
             }
