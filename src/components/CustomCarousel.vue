@@ -107,7 +107,6 @@
 
     data() {
       return {
-        store: useKryptonStore(),
 
         currentSlide: 0,
 
@@ -139,7 +138,6 @@
     watch: {
         currentSlide() {
             this.show_results = false
-            this.store.currentSlide = this.currentSlide
             this.user_choices = {
                 is_english: null,
                 has_intent: null,
@@ -222,8 +220,13 @@
     },
     mounted() {
         this.fetchPrompts();
-        this.currentSlide = this.store.currentSlide
     },
+    setup() {
+        return {
+            store: useKryptonStore(),
+        }
+
+    }
   })
   </script>
   
