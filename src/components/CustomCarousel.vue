@@ -107,7 +107,7 @@
 
     data() {
       return {
-
+        store: useKryptonStore(),
         currentSlide: 0,
 
         user_choices: {
@@ -220,12 +220,6 @@
     mounted() {
         this.fetchPrompts();
     },
-    setup() {
-        return {
-            store: useKryptonStore(),
-        }
-
-    }
   })
   </script>
   
