@@ -159,7 +159,6 @@
         compare(id) {
             this.store.increment();
             this.show_results = true;
-            this.store.setSlide(id)
             if (this.user_choices.is_english === this.prompts[id].is_english) {
                 this.results.is_english = "Correct"
                 if (this.user_choices.is_english === false)
