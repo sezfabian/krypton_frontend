@@ -14,8 +14,8 @@
             <div class="text-dark text-sm"><input type="radio" v-model="user_choices.is_english" :value=false /> Yes
                 <input type="radio" class="ms-3" v-model="user_choices.is_english" :value=true /> No
             </div>
-            <div class="text-dark text-sm" v-if="show_results">
-                <p> <b class="text-danger" v-if="results.is_english === 'Wrong'">{{ results.is_english }}</b> 
+            <div class="text-dark text-sm " v-if="show_results">
+                <p class="text-info"> <b class="text-danger" v-if="results.is_english === 'Wrong'">{{ results.is_english }}</b> 
                 <b class="text-success" v-if="results.is_english === 'Correct'"> {{ results.is_english }}</b>
                 Criteria: {{ prompt.is_english_criteria_info.criteria }}</p>
             </div>
@@ -27,8 +27,8 @@
             <div class="text-dark text-sm"><input type="radio" v-model="user_choices.has_intent" :value=true /> Yes
                 <input type="radio" class="ms-3" v-model="user_choices.has_intent" :value=false /> No
             </div>
-            <div class="text-dark text-sm" v-if="show_results && user_choices.has_intent !== null">
-                <p><b class="text-danger" v-if="results.has_intent === 'Wrong'">{{ results.has_intent }}</b>
+            <div class="text-dark text-sm text-info" v-if="show_results && user_choices.has_intent !== null">
+                <p class="text-info"><b class="text-danger" v-if="results.has_intent === 'Wrong'">{{ results.has_intent }}</b>
                     <b class="text-success" v-if="results.has_intent === 'Correct'">{{ results.has_intent }}</b>
                     Criteria: {{ prompt.has_intent_criteria_info.criteria }}</p>
             </div>
@@ -38,8 +38,8 @@
             <div class="text-dark text-sm"><input type="radio" v-model="user_choices.has_relevance" :value=true /> Yes
                 <input type="radio" class="ms-3" v-model="user_choices.has_relevance" :value=false /> No
             </div>
-            <div class="text-dark text-sm" v-if="show_results && user_choices.has_relevance !== null">
-                <p><b class="text-danger" v-if="results.has_relevance === 'Wrong'">{{ results.has_relevance }}</b>
+            <div class="text-dark text-sm text-info" v-if="show_results && user_choices.has_relevance !== null">
+                <p class="text-info"><b class="text-danger" v-if="results.has_relevance === 'Wrong'">{{ results.has_relevance }}</b>
                    <b class="text-success" v-if="results.has_relevance === 'Correct'"> {{ results.has_relevance }}</b>
                    Criteria: {{ prompt.has_context_relevance_criteria_info.criteria }}</p>
             </div>
@@ -49,8 +49,8 @@
             <div class="text-dark text-sm"><input type="radio" v-model="user_choices.has_complexity" :value=true /> Yes
                 <input type="radio"  class="ms-3" v-model="user_choices.has_complexity" :value=false /> No
             </div>
-            <div class="text-dark text-sm" v-if="show_results && user_choices.has_complexity !== null">
-                <p><b class="text-danger" v-if="results.has_complexity === 'Wrong'">{{ results.has_complexity }}</b>
+            <div class="text-dark text-sm text-info" v-if="show_results && user_choices.has_complexity !== null">
+                <p class="text-info"><b class="text-danger" v-if="results.has_complexity === 'Wrong'">{{ results.has_complexity }}</b>
                 <b class="text-success" v-if="results.has_complexity === 'Correct'"> {{ results.has_complexity }}</b>
                 Criteria: {{ prompt.has_complexity_criteria_info.criteria }}</p>
             </div>
@@ -60,8 +60,8 @@
             <div class="text-dark text-sm"><input type="radio" v-model="user_choices.requires_followup" :value=true /> Yes
                 <input type="radio" class="ms-3" v-model="user_choices.requires_followup" :value=false /> No
             </div>
-            <div class="text-dark text-sm mb-3" v-if="show_results && user_choices.requires_followup !== null">
-                <p><b class="text-danger" v-if="results.requires_followup === 'Wrong'" >{{ results.requires_followup }}</b>
+            <div class="text-dark text-sm mb-3 text-info" v-if="show_results && user_choices.requires_followup !== null">
+                <p class="text-info"><b class="text-danger" v-if="results.requires_followup === 'Wrong'" >{{ results.requires_followup }}</b>
                     <b class="text-success" v-if="results.requires_followup === 'Correct'"> {{ results.requires_followup }}</b>
                     Criteria: {{ prompt.require_follow_up_criteria_info.criteria }}</p>
             </div>
