@@ -67,22 +67,22 @@
             </div>
           </div>
         </div>
-        <div>
+        <div class="mt-4">
             <button @click="Previous()"
-            class="btn-lg mb-4 rounded w-10 border-0 mt-3 mx-6 bg-gradient-info">
-            <a class="text-white"> Previous </a>
+            class="btn-sm mb-4 rounded w-lg-10 border-0 mt-3 mx-4 mx-lg-6 bg-gradient-info">
+            <a class="text-white"> Prev </a>
             </button>
           
             <button v-if="user_choices.is_english !== null && user_choices.has_intent !== null
             && user_choices.has_relevance !== null && user_choices.has_complexity !== null
             && user_choices.requires_followup !== null || user_choices.is_english === false"
-            class="btn-lg mb-4 rounded w-10 text-white border-0 mt-3 mx-6 bg-gradient-success"
+            class="btn-sm mb-4 rounded  w-lg-10 text-white border-0 mt-3 mx-2 me-4 mx-lg-6 bg-gradient-success"
             @click="compare(currentSlide)">
             <i class="fas fa-check"></i>
             SUBMIT </button>
 
             <button @click="Next()"
-            class="btn-lg mb-4 rounded w-10 border-0 mt-3 mx-6 bg-gradient-info"><a class="text-white"> Next </a></button>
+            class="btn-sm mb-4 rounded  w-lg-10 border-0 mt-3 mx-1 mx-lg-6 bg-gradient-info"><a class="text-white"> Next </a></button>
         </div>
         </div>
       </Slide>
@@ -152,6 +152,7 @@
                 has_complexity: null,
                 requires_followup: null,
             };
+            this.scrollToTop()
         }
     },
 
@@ -207,6 +208,10 @@
             if (this.currentSlide > 0) {
                 this.currentSlide--;
             }
+        },
+
+        scrollToTop() {
+            window.scrollTo(0,0);
         },
         // fetch prompts
         fetchPrompts() {
