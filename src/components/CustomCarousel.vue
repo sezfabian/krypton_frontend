@@ -4,11 +4,20 @@
         <input class="mx-3 mt-n3 text-lg rounded border-0" type="number" min="0" max="9" v-model="currentSlide" />
         <button class="btn btn-dark" @click="Next()">Next</button>
     </div>
-    <Carousel ref="carousel" v-model="currentSlide" mouseDrag=false touchDrag=false>
+    <div class="d-flex z-index-4 mt-8 text-warning justify-content-center text-center" v-if="fetching">
+            <pulse-loader :loading="loading" :color="red" :size="size"></pulse-loader>
+            <h5 class="text-dark mx-5">Fetching Prompts...</h5>
+        </div> 
+    <Carousel ref="carousel" v-model="currentSlide" :mouseDrag=false touchDrag=false v-else >
       <Slide v-for="prompt in prompts" :key="prompt.id" class="d-block align-items-center flex-wrap">
-        <div class="carousel__item col-lg-12 d-block px-lg-6 px-2  py-3 text-start">
+        <h6 class="text-info py-2" v-if="prompts.length < 0"> Loading Prompts </h6>
+        <div class="carousel__item col-lg-12 d-block px-lg-6 px-2 z-index-100 py-3 text-start">
           <h6 class="text-info py-2"> Prompt: {{ prompt.id }} </h6>
           <p class="text-dark">  {{ prompt.prompt }} </p>
+          <div class=" " v-if="prompt.special_case === true && show_results">
+          <h6 class="text-primary py-2"> Special Case </h6>
+          <i class="fa fa-flag-checkered text-success"></i>
+          </div>
           <div class="row mx-5">
             <p class="text-dark text-bold">Is the prompt in a foreign language?</p>
             <div class="text-dark text-sm"><input type="radio" v-model="user_choices.is_english" :value=false /> Yes
@@ -86,11 +95,11 @@
         </div>
         </div>
       </Slide>
-  
       <template #addons>
         <Navigation />
         <Pagination />
       </template>
+
     </Carousel>
   </template>
   
@@ -99,6 +108,7 @@
   import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel'
   import axios from 'axios'
   import { useKryptonStore } from '@/store'
+  import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
   
   import 'vue3-carousel/dist/carousel.css'
   
@@ -109,7 +119,7 @@
       return {
 
         currentSlide: 0,
-
+        fetching: true,
         user_choices: {
             is_english: null,
             has_intent: null,
@@ -133,6 +143,7 @@
       Slide,
       Pagination,
       Navigation,
+      PulseLoader
     },
 
     watch: {
@@ -215,8 +226,10 @@
         },
         // fetch prompts
         fetchPrompts() {
+            this.fetching = true
             axios.get('https://ecommercekrypton.azurewebsites.net/training/prompts/').then((response) => {
                 this.prompts = response.data
+                this.fetching = false
             })
             .catch((error) => {
                 console.log(error)
@@ -224,6 +237,7 @@
         }
     },
     mounted() {
+        this.fetching = true
         this.fetchPrompts();
     },
     setup() {
