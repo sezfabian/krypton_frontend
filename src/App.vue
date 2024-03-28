@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-dark bg-white mb-5">
+  <nav class="navbar navbar-dark bg-white position-fixed top-0 w-100 z-index-5 top">
     <router-link to="/" class="text-dark text-xxlg"><h2>Krypton Practice</h2></router-link> 
     <button class="btn btn-dark mt-3" @click="store.reset()">
       <i class="fas fa-redo"></i>
@@ -8,7 +8,9 @@
      <b class="text-success" v-if="store.getPerfomance >= 70">{{ store.getPerfomance }} %</b>
      <b class="text-danger" v-if="store.getPerfomance < 70">{{ store.getPerfomance }} % </b></p>
   </nav>
-  <router-view/>
+  <div class="text-dark text-lg mt-10">
+  <router-view />
+  </div>
 </template>
 
 
@@ -29,6 +31,7 @@ const store = useKryptonStore()
 
 nav {
   padding: 30px;
+  z-index: 100;
 }
 
 nav a {

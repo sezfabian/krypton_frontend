@@ -4,14 +4,14 @@
         <input class="mx-3 mt-n3 text-lg rounded border-0" type="number" min="0" max="9" v-model="currentSlide" />
         <button class="btn btn-dark" @click="Next()">Next</button>
     </div>
-    <div class="d-flex z-index-4 mt-8 text-warning justify-content-center text-center" v-if="fetching">
+    <div class="d-flex  mt-8 text-warning justify-content-center text-center" v-if="fetching">
             <pulse-loader :loading="loading" :color="red" :size="size"></pulse-loader>
             <h5 class="text-dark mx-5">Fetching Prompts...</h5>
         </div> 
     <Carousel ref="carousel" v-model="currentSlide" :mouseDrag=false touchDrag=false v-else >
       <Slide v-for="prompt in prompts" :key="prompt.id" class="d-block align-items-center flex-wrap">
         <h6 class="text-info py-2" v-if="prompts.length < 0"> Loading Prompts </h6>
-        <div class="carousel__item col-lg-12 d-block px-lg-6 px-2 z-index-100 py-3 text-start">
+        <div class="carousel__item col-lg-12 d-block px-lg-6 px-2 py-3 text-start">
           <h6 class="text-info py-2"> Prompt: {{ prompt.id }} </h6>
           <p class="text-dark">  {{ prompt.prompt }} </p>
           <div class=" " v-if="prompt.special_case === true && show_results">
